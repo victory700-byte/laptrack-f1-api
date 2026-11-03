@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: laptrack-f1-api-vk
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: ALLOWED_ORIGINS
+        value: https://laptrack-f1.vickykrishnan700.chatgpt.site
+      - key: FASTF1_AUTH_METHOD
+        value: password
+      - key: F1_USERNAME
+        sync: false
+      - key: F1_PASSWORD
+        sync: false
